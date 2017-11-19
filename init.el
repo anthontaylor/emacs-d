@@ -290,6 +290,13 @@ helm-split-window-in-side-p t)
           (lambda ()
             (setq auto-composition-mode nil)))
 
+;; Add company mode
+
+(global-company-mode)
+(global-set-key (kbd "TAB") #'company-indent-or-complete-common)
+(add-hook 'cider-repl-mode-hook #'cider-company-enable-fuzzy-completion)
+(add-hook 'cider-mode-hook #'cider-company-enable-fuzzy-completion)
+
 ;; OSX specific settings
 (when (eq system-type 'darwin)
   (require 'prelude-osx))
