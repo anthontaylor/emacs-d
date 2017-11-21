@@ -117,6 +117,29 @@ by Prelude.")
 (require 'prelude-clojure)
 (require 'clj-refactor)
 
+;; hideshow setup
+
+(defun hs-clojure-hide-namespace-and-folds ()
+  "Hide the first (ns ...) expression in the file, and also all
+the (^:fold ...) expressions."
+  (interactive)
+  (hs-life-goes-on
+   (save-excursion
+     (goto-char (point-min))
+     (when (ignore-errors (re-search-forward "^(ns "))
+       (hs-hide-block))
+
+     (while (ignore-errors (re-search-forward "\\^:fold"))
+       (hs-hide-block)
+       (next-line)))))
+
+(defun hs-clojure-mode-hook ()
+  (interactive)
+  (hs-minor-mode 1)
+  (hs-clojure-hide-namespace-and-folds))
+
+(add-hook 'clojure-mode-hook 'hs-clojure-mode-hook)
+
 ;; helm setup
 
 (require 'helm-config)
@@ -174,6 +197,12 @@ by Prelude.")
 (define-key helm-map (kbd "M-o") 'helm-previous-source)
 
 (global-set-key (kbd "M-s s") 'helm-ag)
+
+;;helm projectile
+
+(projectile-global-mode)
+(setq projectile-completion-system 'helm)
+(helm-projectile-on)
 
 ;; (require 'helm-projectile)
 
