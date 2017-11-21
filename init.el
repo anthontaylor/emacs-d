@@ -198,6 +198,12 @@ the (^:fold ...) expressions."
 
 (global-set-key (kbd "M-s s") 'helm-ag)
 
+;;helm projectile
+
+(projectile-global-mode)
+(setq projectile-completion-system 'helm)
+(helm-projectile-on)
+
 ;; (require 'helm-projectile)
 
 ;; (setq helm-projectile-sources-list (cons 'helm-source-projectile-files-list
