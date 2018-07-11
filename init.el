@@ -303,6 +303,12 @@ helm-split-window-in-side-p t)
 (add-hook 'cider-repl-mode-hook #'cider-company-enable-fuzzy-completion)
 (add-hook 'cider-mode-hook #'cider-company-enable-fuzzy-completion)
 
+;;theme
+(disable-theme 'zenburn)
+(setq prelude-theme 'tangotango)
+
+;; clojure indentation
+
 ;; OSX specific settings
 (when (eq system-type 'darwin)
   (require 'prelude-osx))
