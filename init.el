@@ -307,7 +307,14 @@ helm-split-window-in-side-p t)
 (disable-theme 'zenburn)
 (setq prelude-theme 'tangotango)
 
+;;dash at point
+(global-set-key (kbd "C-c C-c") 'dash-at-point)
+
 ;; clojure indentation
+
+;;wierd error
+(require 'gnutls)
+(add-to-list 'gnutls-trustfiles "/usr/local/etc/openssl/cert.pem")
 
 ;; OSX specific settings
 (when (eq system-type 'darwin)
